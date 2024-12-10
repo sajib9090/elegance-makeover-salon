@@ -16,7 +16,7 @@ const Login = () => {
   const [visible, setVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
-    email: "",
+    usernameOrMobile: "",
     password: "",
   });
 
@@ -43,11 +43,11 @@ const Login = () => {
     e.preventDefault();
 
     const data = {
-      email_mobile: formData?.email,
+      usernameOrMobile: formData?.usernameOrMobile,
       password: formData?.password,
     };
 
-    if (!data?.email_mobile || !data?.password) {
+    if (!data?.usernameOrMobile || !data?.password) {
       setErrorMessage("All fields are required");
       return;
     }
@@ -88,15 +88,15 @@ const Login = () => {
           <form onSubmit={handleLogin}>
             <div className="mb-4">
               <label className="block text-gray-700" htmlFor="email">
-                Email or Mobile
+                Username or Mobile
               </label>
               <input
                 className="w-full p-3 border border-gray-300 rounded mt-1"
                 type="text"
-                name="email"
-                value={formData.email}
+                name="usernameOrMobile"
+                value={formData.usernameOrMobile}
                 onChange={handleChange}
-                placeholder="Email or Mobile"
+                placeholder="Username or Mobile"
               />
             </div>
             <div className="mb-4 relative">

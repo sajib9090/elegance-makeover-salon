@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import { MdOutlineInventory } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { currentUser, logout } from "../../redux/features/auth/authSlice";
-import { BiSolidPurchaseTag } from "react-icons/bi";
+
 
 const DesktopLink = () => {
   const user = useSelector(currentUser);
@@ -60,17 +60,7 @@ const DesktopLink = () => {
         <GiSellCard />
         <p>Sell</p>
       </Link>
-      <Link
-        to={"/purchase"}
-        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-[#009099] hover:text-white ${
-          location?.pathname?.includes("purchase")
-            ? " bg-[#009099] text-white "
-            : "text-black"
-        }`}
-      >
-        <BiSolidPurchaseTag />
-        <p>Purchase</p>
-      </Link>
+
       <Link
         to={"/reports"}
         className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-[#009099] hover:text-white ${

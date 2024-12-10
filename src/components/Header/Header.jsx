@@ -1,26 +1,26 @@
 import { useSelector } from "react-redux";
-import defaultLogo from "../../assets/logo/png-transparent-blue-capsule-com-removebg-preview.png";
+import defaultLogo from "../../assets/logo/Screenshot_2024-12-06_100318-removebg-preview.png";
 import { currentUser } from "../../redux/features/auth/authSlice";
 const Header = () => {
   const user = useSelector(currentUser);
 
   return (
     <div className="h-[80px] hidden sm:hidden md:hidden lg:flex">
-      <div className="bg-slate-200 w-[256px] flex items-center justify-between px-6 shadow">
+      <div className="bg-slate-200 w-[256px] flex items-center justify-between px-2 shadow">
         <div>
           <img
             className="h-[50px]"
-            src={user?.pharmacyInfo?.brand_logo?.url || defaultLogo}
+            src={user?.brand?.brand_logo?.url || defaultLogo}
             alt=""
           />
         </div>
         <div>
           <p className="capitalize font-semibold">
-            {user?.pharmacyInfo?.pharmacy_name || "pharmacy_name"}
+            {user?.brand?.brand_name || "brand_name"}
           </p>
           <p className="capitalize text-[10px] text-gray-500">
-            {user?.pharmacyInfo?.address?.sub_district || "sub-district"},{" "}
-            {user?.pharmacyInfo?.address?.district || "district"}
+            {user?.brand?.address?.sub_district || "sub-district"},{" "}
+            {user?.brand?.address?.district || "district"}
           </p>
         </div>
       </div>

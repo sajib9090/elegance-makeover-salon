@@ -6,21 +6,18 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
-const MedicineDetails = lazy(() =>
-  import("../pages/Dashboard/MedicineDetails/MedicineDetails")
-);
-const DosageForms = lazy(() =>
-  import("../pages/Dashboard/DosageForms/DosageForms")
-);
-const Purchase = lazy(() => import("../pages/Purchase/Purchase"));
-const Groups = lazy(() => import("../pages/Dashboard/Groups/Groups"));
-const Companies = lazy(() => import("../pages/Dashboard/Companies/Companies"));
-const Query = lazy(() => import("../pages/Purchase/PurchaseDetails/Query"));
-const NewPurchase = lazy(() =>
-  import("../pages/Purchase/NewPurchase/NewPurchase")
-);
 const Sell = lazy(() => import("../pages/Sell/Sell"));
 const SingleInvoice = lazy(() => import("../pages/Sell/SingleInvoice"));
+const Categories = lazy(() =>
+  import("../pages/Dashboard/Categories/Categories")
+);
+const Services = lazy(() => import("../pages/Dashboard/Services/Services"));
+const Employees = lazy(() => import("../pages/Dashboard/Employees/Employees"));
+const IndividualCustomerSell = lazy(() =>
+  import("../pages/Sell/IndividualCustomerSell")
+);
+const Reports = lazy(() => import("../pages/Reports/Reports"));
+const DateWiseReport = lazy(() => import("../pages/Reports/DateWiseReport/DateWiseReport"));
 
 export const router = createBrowserRouter([
   {
@@ -49,61 +46,30 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "dashboard/medicine-details",
+        path: "/dashboard/services",
         element: (
           <Suspense fallback={"LoadingSpinner"}>
-            <MedicineDetails />
+            <Services />
           </Suspense>
         ),
       },
       {
-        path: "dashboard/dosage-forms",
+        path: "/dashboard/categories",
         element: (
           <Suspense fallback={"LoadingSpinner"}>
-            <DosageForms />
+            <Categories />
           </Suspense>
         ),
       },
       {
-        path: "dashboard/groups",
+        path: "/dashboard/employees",
         element: (
           <Suspense fallback={"LoadingSpinner"}>
-            <Groups />
+            <Employees />
           </Suspense>
         ),
       },
-      {
-        path: "dashboard/companies",
-        element: (
-          <Suspense fallback={"LoadingSpinner"}>
-            <Companies />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/purchase",
-        element: (
-          <Suspense fallback={"LoadingSpinner"}>
-            <Purchase />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/purchase/purchase-details?",
-        element: (
-          <Suspense fallback={"LoadingSpinner"}>
-            <Query />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/purchase/purchase-details/new-purchase",
-        element: (
-          <Suspense fallback={"LoadingSpinner"}>
-            <NewPurchase />
-          </Suspense>
-        ),
-      },
+
       {
         path: "/sell",
         element: (
@@ -116,7 +82,31 @@ export const router = createBrowserRouter([
         path: "/sell/:id",
         element: (
           <Suspense fallback={"LoadingSpinner"}>
+            <IndividualCustomerSell />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/sell/:id/:id",
+        element: (
+          <Suspense fallback={"LoadingSpinner"}>
             <SingleInvoice />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/reports",
+        element: (
+          <Suspense fallback={"LoadingSpinner"}>
+            <Reports />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/reports/query",
+        element: (
+          <Suspense fallback={"LoadingSpinner"}>
+            <DateWiseReport />
           </Suspense>
         ),
       },
