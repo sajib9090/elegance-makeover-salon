@@ -35,9 +35,6 @@ const Sell = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 relative cursor-pointer">
-        {/* Background Embellishments */}
-        <div className="absolute inset-0 -z-10 opacity-10 bg-[url('/path-to-your-pattern.png')]"></div>
-
         {isLoading ? (
           <p className="text-center text-gray-500 font-medium">Loading...</p>
         ) : data?.data?.length ? (

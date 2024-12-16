@@ -120,8 +120,8 @@ const IndividualCustomerSell = () => {
       {/* Categories and Services */}
       {isLoading ? (
         <p className="text-center text-gray-500">Loading...</p>
-      ) : Object.keys(groupedServices).length ? (
-        Object.entries(groupedServices).map(([category, services]) => (
+      ) : Object?.keys(groupedServices)?.length ? (
+        Object?.entries(groupedServices)?.map(([category, services]) => (
           <div key={category} className="mb-6">
             {/* Category Title */}
             <h2 className="text-lg font-bold text-pink-600 mb-3 border-b border-pink-300 pb-1 capitalize bg-gradient-to-b from-pink-50 to-white">
@@ -158,16 +158,16 @@ const IndividualCustomerSell = () => {
                       disabled={
                         addLoading ||
                         tempOrderLoading ||
-                        bookedServiceIds.has(service.service_id)
+                        bookedServiceIds?.has(service?.service_id)
                       }
                       onClick={() => handleBooking(service)}
                       className={`w-full text-xs ${
-                        bookedServiceIds.has(service.service_id)
+                        bookedServiceIds?.has(service?.service_id)
                           ? "bg-gray-400 cursor-not-allowed"
                           : "bg-pink-500 text-white hover:bg-pink-600"
                       } px-3 py-1 rounded transition`}
                     >
-                      {bookedServiceIds.has(service.service_id)
+                      {bookedServiceIds?.has(service?.service_id)
                         ? "Booked"
                         : addLoading
                         ? "Please wait.."

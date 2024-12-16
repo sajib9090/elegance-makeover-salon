@@ -62,7 +62,7 @@ const AddNewCustomerRequest = () => {
     }
   };
 
-  const isLoading = employeeLoading;
+  const isLoading = employeeLoading || addLoading;
 
   return (
     <>

@@ -141,6 +141,7 @@ const DetailsModal = ({ setIsOpen, isOpen, carts, customer }) => {
                         </button>
                         <span className="px-2">{item?.quantity}</span>
                         <button
+                          disabled={isLoading}
                           onClick={() => handleQuantityIncrease(item)}
                           className="bg-gray-200 hover:bg-gray-300 px-2 py-1 text-xs rounded"
                         >

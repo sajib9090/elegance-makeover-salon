@@ -20,9 +20,26 @@ const employeeApi = baseApi.injectEndpoints({
       },
       providesTags: ["Employee"],
     }),
+    getEmployeeById: builder.query({
+      query: (employeeId) => ({
+        url: `/employees/employee/${employeeId}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, employeeId) => [
+        { type: "Employee", employee_id: employeeId },
+      ],
+    }),
     addNewEmployee: builder.mutation({
       query: (data) => ({
         url: "/employees/employee-create",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Employee"],
+    }),
+    addEmployeeAdvanceSalary: builder.mutation({
+      query: (data) => ({
+        url: `/employees/employee-advance-salary/${data?.employeeId}`,
         method: "POST",
         body: data,
       }),
@@ -42,5 +59,7 @@ const employeeApi = baseApi.injectEndpoints({
 export const {
   useAddNewEmployeeMutation,
   useGetAllEmployeesQuery,
+  useGetEmployeeByIdQuery,
   useDeleteEmployeeMutation,
+  useAddEmployeeAdvanceSalaryMutation,
 } = employeeApi;

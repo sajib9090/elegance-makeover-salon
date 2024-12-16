@@ -6,6 +6,8 @@ import CurrencyFormatter from "../../../components/CurrencyFormatter/CurrencyFor
 import { useState } from "react";
 import { useGetAllEmployeesQuery } from "../../../redux/features/employee/employeeApi";
 import DeleteEmployee from "../../../components/Employees/DeleteEmployee/DeleteEmployee";
+import AddSalary from "../../../components/Employees/AddSalary/AddSalary";
+import { isSameMonth } from "date-fns";
 
 const Employees = () => {
   const [resultPerPage, setResultPerPage] = useState(10);
@@ -17,6 +19,7 @@ const Employees = () => {
     pageValue: page,
     limitValue: resultPerPage,
   });
+
   return (
     <div className="py-6 px-4">
       <div>
@@ -41,7 +44,7 @@ const Employees = () => {
           }}
           className="rounded"
           type="search"
-          placeholder="Search service..."
+          placeholder="Search employees..."
         />
       </div>
 
@@ -52,9 +55,11 @@ const Employees = () => {
             <thead>
               <tr className="border-b border-[#d0cfcf] h-[35px] w-full text-[12px] sm:text-[14px]">
                 <th className="w-[5%] text-start pl-4">No.</th>
-                <th className="w-[60%] text-start">Name</th>
+                <th className="w-[40%] text-start">Name</th>
                 <th className="w-[20%] text-start"></th>
                 <th className="w-[10%] text-start">Salary</th>
+                <th className="w-[10%] text-start">Advance</th>
+                <th className="w-[10%] text-start">Net Salary</th>
                 <th className="w-[5%] text-start">Action</th>
               </tr>
             </thead>
@@ -62,26 +67,68 @@ const Employees = () => {
               {employees?.data?.map((d, i) => (
                 <tr
                   key={i}
-                  className="border-b border-[#ebebeb] min-h-[40px] w-full sm:text-[16px] hover:bg-blue-100"
+                  className="border-b border-[#ebebeb] min-h-[40px] w-full sm:text-[16px] hover:bg-blue-100 cursor-pointer"
                 >
                   <td className="pl-4 py-2 text-[12px]">
                     {i + 1 + (page - 1) * resultPerPage}
                   </td>
                   <td className="capitalize text-[12px]">
-                    {d?.name?.length > 40
-                      ? d?.name.slice(0, 40) + "..."
-                      : d?.name}
+                    <Link to={d?.employee_id}>
+                      {d?.name?.length > 40
+                        ? d?.name.slice(0, 40) + "..."
+                        : d?.name}
+                    </Link>
                   </td>
                   <td className="capitalize text-[12px]">
-                    <p>{d?.designation}</p>
+                    <p className="text-blue-600">{d?.designation}</p>
                     <p>{d?.mobile}</p>
                   </td>
                   <td className="capitalize text-[12px]">
                     <CurrencyFormatter value={d?.monthly_salary} />
                   </td>
+                  <td className="capitalize text-[12px] text-red-600">
+                    <CurrencyFormatter
+                      value={d?.advanceSalaries
+                        ?.filter((salary) =>
+                          isSameMonth(new Date(salary?.createdAt), new Date())
+                        )
+                        .reduce(
+                          (sum, salary) => sum + salary?.advance_salary,
+                          0
+                        )}
+                    />
+                  </td>
+                  <td
+                    className={`capitalize text-[12px] ${
+                      d?.advanceSalaries
+                        ?.filter((salary) =>
+                          isSameMonth(new Date(salary?.createdAt), new Date())
+                        )
+                        .reduce(
+                          (sum, salary) => sum + salary?.advance_salary,
+                          0
+                        ) < d?.monthly_salary
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    <CurrencyFormatter
+                      value={
+                        d?.monthly_salary -
+                        d?.advanceSalaries
+                          ?.filter((salary) =>
+                            isSameMonth(new Date(salary?.createdAt), new Date())
+                          )
+                          .reduce(
+                            (sum, salary) => sum + salary?.advance_salary,
+                            0
+                          )
+                      }
+                    />
+                  </td>
 
-                  <td>
-                    {/* <DeleteService id={d?.service_id} isLoading={isLoading} /> */}
+                  <td className="py-2 flex items-center justify-center flex-col space-y-2">
+                    <AddSalary employeeId={d?.employee_id} />
                     <DeleteEmployee id={d?.employee_id} isLoading={isLoading} />
                   </td>
                 </tr>

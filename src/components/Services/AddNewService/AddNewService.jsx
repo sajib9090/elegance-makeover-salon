@@ -60,7 +60,7 @@ const AddNewService = () => {
     }
   };
 
-  const isLoading = categoryLoading;
+  const isLoading = categoryLoading || addLoading;
 
   return (
     <>

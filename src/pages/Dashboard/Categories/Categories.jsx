@@ -67,7 +67,7 @@ const Categories = () => {
                       onClick={() => handleRemove(d?.category_id)}
                       className="flex items-center text-[12px] sm:text-[14px] text-red-600"
                     >
-                      Remove
+                      {deleteLoading ? "Please wait..." : "Remove"}
                     </button>
                   </td>
                 </tr>

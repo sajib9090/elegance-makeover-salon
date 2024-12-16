@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useGetAllSoldInvoicesByDateQuery } from "../../../redux/features/soldInvoice/soldInvoiceApi";
 import CurrencyFormatter from "../../../components/CurrencyFormatter/CurrencyFormatter";
+import FullPageLoader from "../../../components/FullPageLoader/FullPageLoader";
 
 const DateWiseReport = () => {
   const location = useLocation();
@@ -61,7 +62,7 @@ const DateWiseReport = () => {
         </p>
       )}
       {isLoading ? (
-        <p className="text-center text-gray-500 mt-6">Loading data...</p>
+        <FullPageLoader />
       ) : data?.data?.length ? (
         <>
           <div className="overflow-x-auto mt-6">

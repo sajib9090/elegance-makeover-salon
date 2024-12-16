@@ -8,7 +8,6 @@ import { MdOutlineInventory } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { currentUser, logout } from "../../redux/features/auth/authSlice";
 
-
 const DesktopLink = () => {
   const user = useSelector(currentUser);
   const dispatch = useDispatch();
@@ -18,9 +17,9 @@ const DesktopLink = () => {
     <div className="pt-10">
       <Link
         to={"/"}
-        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-[#009099] hover:text-white ${
+        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white ${
           location?.pathname === "/"
-            ? " bg-[#009099] text-white "
+            ? " bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white "
             : "text-black"
         }`}
       >
@@ -29,9 +28,9 @@ const DesktopLink = () => {
       </Link>
       <Link
         to={"/dashboard"}
-        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-[#009099] hover:text-white ${
+        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white ${
           location?.pathname?.includes("dashboard")
-            ? " bg-[#009099] text-white "
+            ? " bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white "
             : "text-black"
         }`}
       >
@@ -40,9 +39,9 @@ const DesktopLink = () => {
       </Link>
       <Link
         to={"/inventory"}
-        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-[#009099] hover:text-white ${
+        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white ${
           location?.pathname?.includes("inventory")
-            ? " bg-[#009099] text-white "
+            ? " bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white "
             : "text-black"
         }`}
       >
@@ -51,9 +50,9 @@ const DesktopLink = () => {
       </Link>
       <Link
         to={"/sell"}
-        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-[#009099] hover:text-white ${
+        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white ${
           location?.pathname?.includes("sell")
-            ? " bg-[#009099] text-white "
+            ? " bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white "
             : "text-black"
         }`}
       >
@@ -63,9 +62,9 @@ const DesktopLink = () => {
 
       <Link
         to={"/reports"}
-        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-[#009099] hover:text-white ${
+        className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white ${
           location?.pathname?.includes("reports")
-            ? " bg-[#009099] text-white "
+            ? "bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white "
             : "text-black"
         }`}
       >
@@ -76,7 +75,7 @@ const DesktopLink = () => {
       {user && (
         <button
           onClick={() => dispatch(logout())}
-          className={`flex w-full items-center px-6 space-x-2 py-3 text-lg hover:bg-[#009099] hover:text-white text-black
+          className={`flex w-full items-center px-6 space-x-2 py-3 text-lg hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white text-black
         `}
         >
           <TbLogout2 />

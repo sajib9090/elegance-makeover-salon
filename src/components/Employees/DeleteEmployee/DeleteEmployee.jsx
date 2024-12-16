@@ -4,6 +4,7 @@ import PrimaryLoading from "../../Loading/PrimaryLoading";
 import Modal from "../../Modal/Modal";
 import { toast } from "sonner";
 import { useDeleteEmployeeMutation } from "../../../redux/features/employee/employeeApi";
+import { IoTrashBin } from "react-icons/io5";
 
 const DeleteEmployee = ({ id, isLoading }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,7 @@ const DeleteEmployee = ({ id, isLoading }) => {
         onClick={() => handleRemove(id)}
         className="flex items-center text-[12px] sm:text-[12px] text-red-600"
       >
-        Remove
+        <IoTrashBin className="text-xl text-red-600" />
       </button>
 
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} maxW={"max-w-[200px]"}>
