@@ -23,7 +23,16 @@ const DateWiseReport = lazy(() =>
   import("../pages/Reports/DateWiseReport/DateWiseReport")
 );
 const Users = lazy(() => import("../pages/Dashboard/Users/Users"));
-const EmployeeDetails = lazy(() => import("../pages/Dashboard/Employees/EmployeeDetails/EmployeeDetails"));
+const EmployeeDetails = lazy(() =>
+  import("../pages/Dashboard/Employees/EmployeeDetails/EmployeeDetails")
+);
+const Expense = lazy(() => import("../pages/Expense/Expense"));
+const UserDetails = lazy(() =>
+  import("../pages/Dashboard/Users/UserDetails/UserDetails")
+);
+const DailyExpenses = lazy(() =>
+  import("../pages/Expense/DailyExpenses/DailyExpenses")
+);
 
 export const router = createBrowserRouter([
   {
@@ -91,6 +100,14 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: "/dashboard/users/:id",
+        element: (
+          <Suspense fallback={<FullPageLoader />}>
+            <UserDetails />
+          </Suspense>
+        ),
+      },
 
       {
         path: "/sell",
@@ -129,6 +146,22 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<FullPageLoader />}>
             <DateWiseReport />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/expense",
+        element: (
+          <Suspense fallback={<FullPageLoader />}>
+            <Expense />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/expense/daily-expenses",
+        element: (
+          <Suspense fallback={<FullPageLoader />}>
+            <DailyExpenses />
           </Suspense>
         ),
       },

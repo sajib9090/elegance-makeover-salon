@@ -4,7 +4,7 @@ import { ImHome3 } from "react-icons/im";
 import { MdSpaceDashboard } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import { Link, useLocation } from "react-router-dom";
-import { MdOutlineInventory } from "react-icons/md";
+import { GiExpense } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { currentUser, logout } from "../../redux/features/auth/authSlice";
 
@@ -38,15 +38,15 @@ const DesktopLink = () => {
         <p>Dashboard</p>
       </Link>
       <Link
-        to={"/inventory"}
+        to={"/expense"}
         className={`flex items-center px-6 space-x-2 py-3 text-lg hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white ${
-          location?.pathname?.includes("inventory")
+          location?.pathname?.includes("expense")
             ? " bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white "
             : "text-black"
         }`}
       >
-        <MdOutlineInventory />
-        <p>Inventory</p>
+        <GiExpense />
+        <p>Expense</p>
       </Link>
       <Link
         to={"/sell"}

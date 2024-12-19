@@ -6,13 +6,14 @@ import Modal from "../../Modal/Modal";
 import PrimaryLoading from "../../Loading/PrimaryLoading";
 
 /* eslint-disable react/prop-types */
-const SellDone = ({ carts, totalBill, customer }) => {
+const SellDone = ({ carts, totalBill, customer, discountAmount }) => {
   const [createNewInvoice, { isLoading }] = useCreateNewInvoiceMutation();
   const navigate = useNavigate();
 
   const handleSellDone = async () => {
     const data = {
       items: carts?.data,
+      total_discount: discountAmount || 0,
       total_bill: totalBill,
       customer_name: customer?.name,
       customer_mobile: customer?.mobile,
@@ -34,15 +35,13 @@ const SellDone = ({ carts, totalBill, customer }) => {
 
   return (
     <>
-      <div className="flex items-center justify-end mt-4">
-        <button
-          disabled={isLoading}
-          onClick={() => setIsOpen(true)}
-          className="px-6 py-2 bg-pink-600 text-white rounded"
-        >
-          {isLoading ? <PrimaryLoading /> : "Done"}
-        </button>
-      </div>
+      <button
+        disabled={isLoading}
+        onClick={() => setIsOpen(true)}
+        className="px-6 py-2 bg-pink-600 text-white rounded"
+      >
+        {isLoading ? <PrimaryLoading /> : "Done"}
+      </button>
 
       {/* Modal */}
       {isOpen && (

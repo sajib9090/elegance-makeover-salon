@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { toast } from "sonner";
 import {
   useDeleteTempOrderMutation,
@@ -8,12 +9,27 @@ import CurrencyFormatter from "../../CurrencyFormatter/CurrencyFormatter";
 import Modal from "../../Modal/Modal";
 import SellDone from "../SellDone/SellDone";
 import { IoTrashBin } from "react-icons/io5";
+import { useUpdateTempCustomerMarkedAsPaidMutation } from "../../../redux/features/tempCustomer/tempCustomer";
+import PrimaryLoading from "../../Loading/PrimaryLoading";
+import CustomerInvoice from "../CustomerInvoice/CustomerInvoice";
 
 const DetailsModal = ({ setIsOpen, isOpen, carts, customer }) => {
+  const [discountAmount, setDiscountAmount] = useState("");
+  const [updateTempCustomerMarkedAsPaid, { isLoading: updateLoading }] =
+    useUpdateTempCustomerMarkedAsPaidMutation();
+
   const totalAmount = carts?.data?.reduce(
     (total, item) => total + item?.quantity * item?.price,
     0
   );
+  const handleDiscountChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*\.?\d*$/.test(value)) {
+      setDiscountAmount(value);
+    }
+  };
+
+  const discountedTotal = totalAmount - discountAmount;
 
   const [updateTempOrderQuantity, { isLoading }] =
     useUpdateTempOrderQuantityMutation();
@@ -31,6 +47,7 @@ const DetailsModal = ({ setIsOpen, isOpen, carts, customer }) => {
       toast.error(error?.message || error?.data?.message);
     }
   };
+
   const handleQuantityIncrease = async (item) => {
     const data = {
       tempOrderLogId: item?.temp_order_log_id,
@@ -56,6 +73,20 @@ const DetailsModal = ({ setIsOpen, isOpen, carts, customer }) => {
       const response = await deleteTempOrder(data).unwrap();
       if (response?.success) {
         toast.success("Successfully removed");
+      }
+    } catch (error) {
+      toast.error(error?.message || error?.data?.message);
+    }
+  };
+
+  const handleMarkAsPaid = async () => {
+    try {
+      const response = await updateTempCustomerMarkedAsPaid(
+        customer?.temp_customer_id
+      ).unwrap();
+
+      if (response?.success) {
+        toast.success("Marked as Paid");
       }
     } catch (error) {
       toast.error(error?.message || error?.data?.message);
@@ -91,6 +122,20 @@ const DetailsModal = ({ setIsOpen, isOpen, carts, customer }) => {
               <span className="font-bold">Date:</span>{" "}
               {new Date()?.toLocaleDateString()}
             </p>
+          </div>
+
+          {/* Discount Input */}
+          <div className="my-4">
+            <label className="block text-sm font-bold text-gray-700 text-end">
+              Discount Amount:
+            </label>
+            <input
+              type="text"
+              value={discountAmount}
+              onChange={handleDiscountChange}
+              className="w-full mt-2 px-4 py-2 border rounded text-right"
+              placeholder="Enter discount amount"
+            />
           </div>
 
           {/* Invoice Table */}
@@ -158,7 +203,7 @@ const DetailsModal = ({ setIsOpen, isOpen, carts, customer }) => {
               <tfoot>
                 <tr>
                   <td
-                    colSpan="3"
+                    colSpan="4"
                     className="border border-gray-200 p-2 font-bold text-right"
                   >
                     Total Amount:
@@ -167,13 +212,61 @@ const DetailsModal = ({ setIsOpen, isOpen, carts, customer }) => {
                     <CurrencyFormatter value={totalAmount} />
                   </td>
                 </tr>
+                <tr>
+                  <td
+                    colSpan="4"
+                    className="border border-gray-200 p-2 font-bold text-right"
+                  >
+                    Discount:
+                  </td>
+                  <td className="border border-gray-200 p-2 text-right font-bold">
+                    <CurrencyFormatter value={discountAmount} />
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    colSpan="4"
+                    className="border border-gray-200 p-2 font-bold text-right"
+                  >
+                    Net Amount:
+                  </td>
+                  <td className="border border-gray-200 p-2 text-right font-bold">
+                    <CurrencyFormatter value={discountedTotal} />
+                  </td>
+                </tr>
               </tfoot>
             </table>
-            <SellDone
-              carts={carts}
-              totalBill={totalAmount}
-              customer={customer}
-            />
+            <div className="flex items-center justify-between mt-4">
+              <CustomerInvoice
+                carts={carts}
+                discountAmount={discountAmount}
+                totalBill={discountedTotal}
+                customer={customer}
+              />
+              <button
+                disabled={updateLoading}
+                onClick={handleMarkAsPaid}
+                className={`${
+                  customer?.paid
+                    ? "bg-green-700 animate-pulse"
+                    : "bg-red-600 hover:bg-red-700"
+                } px-6 py-2 text-white rounded`}
+              >
+                {updateLoading ? (
+                  <PrimaryLoading />
+                ) : customer?.paid ? (
+                  "Paid ✓"
+                ) : (
+                  "Paid"
+                )}
+              </button>
+              <SellDone
+                carts={carts}
+                discountAmount={discountAmount}
+                totalBill={discountedTotal}
+                customer={customer}
+              />
+            </div>
           </div>
         </Modal>
       )}

@@ -58,6 +58,7 @@ export const baseApi = createApi({
     "Temp-Customer",
     "TempOrderLog",
     "Sold-Invoice",
+    "Expense",
   ],
   endpoints: () => ({}),
 });

@@ -21,6 +21,8 @@ const DateWiseReport = () => {
   // Calculate the total sell
   const totalSell =
     data?.data?.reduce((sum, invoice) => sum + invoice.total_bill, 0) || 0;
+  const totalDiscount =
+    data?.data?.reduce((sum, invoice) => sum + invoice.total_discount, 0) || 0;
 
   // Update the query parameter whenever the date changes
   const handleDateChange = (event) => {
@@ -113,7 +115,12 @@ const DateWiseReport = () => {
                       </span>
                     </td>
                     <td className="px-4 py-2 border border-gray-200 text-sm text-gray-800 text-right">
-                      <CurrencyFormatter value={invoice?.total_bill} />
+                      <span>
+                        <CurrencyFormatter value={invoice?.total_bill} />
+                      </span>
+                      <span className="text-[9px] text-red-600">
+                        <CurrencyFormatter value={invoice?.total_discount} />
+                      </span>
                     </td>
                   </tr>
                 ))}
@@ -125,6 +132,18 @@ const DateWiseReport = () => {
               <span>Total Sell:</span>
               <strong>
                 <CurrencyFormatter value={totalSell} />
+              </strong>
+            </div>
+            <div className="text-lg text-gray-800 text-end flex items-center justify-end space-x-6">
+              <span>Total Discount:</span>
+              <span className="text-red-600">
+                <CurrencyFormatter value={totalDiscount} />
+              </span>
+            </div>
+            <div className="text-lg font-medium text-gray-800 text-end flex items-center justify-end space-x-6">
+              <span>Net Sell:</span>
+              <strong>
+                <CurrencyFormatter value={totalSell - totalDiscount} />
               </strong>
             </div>
           </div>

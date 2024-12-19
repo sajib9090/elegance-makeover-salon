@@ -40,6 +40,13 @@ const tempCustomerApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Temp-Customer"],
     }),
+    updateTempCustomerMarkedAsPaid: builder.mutation({
+      query: (id) => ({
+        url: `/temp-customers/marked-as-paid/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Temp-Customer"],
+    }),
   }),
 });
 
@@ -48,4 +55,5 @@ export const {
   useGetAllTempServicesQuery,
   useDeleteTempCustomerMutation,
   useGetTempCustomerByIdQuery,
+  useUpdateTempCustomerMarkedAsPaidMutation,
 } = tempCustomerApi;
