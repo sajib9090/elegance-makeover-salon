@@ -33,6 +33,12 @@ const UserDetails = lazy(() =>
 const DailyExpenses = lazy(() =>
   import("../pages/Expense/DailyExpenses/DailyExpenses")
 );
+const UserDetailsWithBrand = lazy(() =>
+  import("../pages/Dashboard/Users/UserDetailsWithBrand/UserDetailsWithBrand")
+);
+const DetailsReport = lazy(() =>
+  import("../pages/Reports/DetailsReport/DetailsReport")
+);
 
 export const router = createBrowserRouter([
   {
@@ -142,6 +148,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/reports/details-report",
+        element: (
+          <Suspense fallback={<FullPageLoader />}>
+            <DetailsReport />
+          </Suspense>
+        ),
+      },
+      {
         path: "/reports/query",
         element: (
           <Suspense fallback={<FullPageLoader />}>
@@ -162,6 +176,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<FullPageLoader />}>
             <DailyExpenses />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/user-details-with-brand/:id",
+        element: (
+          <Suspense fallback={<FullPageLoader />}>
+            <UserDetailsWithBrand />
           </Suspense>
         ),
       },

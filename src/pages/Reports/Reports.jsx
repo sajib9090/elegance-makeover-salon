@@ -7,19 +7,11 @@ import CurrencyFormatter from "../../components/CurrencyFormatter/CurrencyFormat
 const Reports = () => {
   const date = new Date();
   const formattedDate = date.toISOString().split("T")[0];
-  const formattedMonth = `${date.getFullYear()}-${String(
-    date.getMonth() + 1
-  ).padStart(2, "0")}`;
 
   const { data: dateWiseData, isLoading: dateWiseLoading } =
     useGetAllSoldInvoicesByDateQuery(
       { date: formattedDate },
       { skip: !formattedDate }
-    );
-  const { data: monthWiseData, isLoading: monthWiseLoading } =
-    useGetAllSoldInvoicesByDateQuery(
-      { month: formattedMonth },
-      { skip: !formattedMonth }
     );
 
   let totalBillSumByDate = 0;
@@ -27,15 +19,6 @@ const Reports = () => {
   // Calculate total bill sum if data is available
   if (dateWiseData?.data?.length) {
     totalBillSumByDate = dateWiseData?.data?.reduce(
-      (sum, invoice) => sum + (invoice?.total_bill || 0),
-      0
-    );
-  }
-  let totalBillSumByMonth = 0;
-
-  // Calculate total bill sum if data is available
-  if (monthWiseData?.data?.length) {
-    totalBillSumByMonth = monthWiseData?.data?.reduce(
       (sum, invoice) => sum + (invoice?.total_bill || 0),
       0
     );
@@ -61,13 +44,9 @@ const Reports = () => {
         backGroundColor={"bg-purple-200"}
         logo={<MdOutlineCalendarMonth />}
         logoColor={"text-purple-600"}
-        link={"#"}
-        quantity={
-          monthWiseLoading
-            ? "Please wait..."
-            : <CurrencyFormatter value={totalBillSumByMonth} /> || "00"
-        }
-        title={"Current Month's Sales"}
+        link={"details-report"}
+        quantity={"Details"}
+        title={"Details Sales & Expenses"}
       />
     </div>
   );

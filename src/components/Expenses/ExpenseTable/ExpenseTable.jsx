@@ -37,7 +37,7 @@ const ExpenseTable = ({ expenses }) => {
   }, [expenses]);
 
   return (
-    <div className="py-6 px-2 bg-gray-100 min-h-screen">
+    <div className="py-6 px-2 min-h-screen">
       <h1 className="text-xl font-bold text-gray-800 mb-6">Daily Expenses</h1>
 
       <div className="bg-white shadow-md rounded-lg overflow-hidden">

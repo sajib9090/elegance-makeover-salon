@@ -9,6 +9,7 @@ import defaultLogo from "../../assets/logo/png-transparent-blue-capsule-com-remo
 import MobileLink from "../Navlink/MobileLink";
 import { useSelector } from "react-redux";
 import { currentUser } from "../../redux/features/auth/authSlice";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,11 +23,13 @@ const Navbar = () => {
       {/* large screen */}
       <div className="w-[256px] bg-slate-100 min-h-[calc(100vh-115px)] hidden sm:hidden md:hidden lg:block shadow sticky top-[80px] z-50">
         <div className="flex items-center justify-center pt-6">
-          <Profile
-            image={user?.avatar?.url || defaultProfileImage}
-            name={user?.name}
-            role={user?.role}
-          />
+          <Link to={`user-details-with-brand/${user?.user_id}`}>
+            <Profile
+              image={user?.avatar?.url || defaultProfileImage}
+              name={user?.name}
+              role={user?.role}
+            />
+          </Link>
         </div>
 
         {/* menu items */}
