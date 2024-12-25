@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from "react-redux";
 import { currentUser } from "../../../../redux/features/auth/authSlice";
-import { FaUserEdit } from "react-icons/fa";
-import { MdEditDocument } from "react-icons/md";
+import EditBrand from "../../../../components/User/EditBrand/EditBrand";
+import EditUser from "../../../../components/User/EditUser/EditUser";
 
 const UserDetailsWithBrand = () => {
   const user = useSelector(currentUser);
@@ -58,9 +58,7 @@ const UserDetailsWithBrand = () => {
               <h2 className="text-3xl font-semibold text-gray-800 pb-2">
                 User Details
               </h2>
-              <button className="text-2xl text-green-700">
-                <FaUserEdit />
-              </button>
+              <EditUser user={user} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
               <DetailItem label="Name" value={user?.name} />
@@ -76,9 +74,7 @@ const UserDetailsWithBrand = () => {
               <h2 className="text-3xl font-semibold text-gray-800 pb-2">
                 Brand Details
               </h2>
-              <button className="text-2xl text-orange-700">
-                <MdEditDocument />
-              </button>
+              <EditBrand user={user} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
               <DetailItem label="Brand Name" value={user?.brand?.brand_name} />
@@ -93,6 +89,14 @@ const UserDetailsWithBrand = () => {
               <DetailItem
                 label="Sub-District"
                 value={user?.brand?.address?.sub_district}
+              />
+              <DetailItem
+                label="Mobile1"
+                value={user?.brand?.contact?.mobile1}
+              />
+              <DetailItem
+                label="Mobile2"
+                value={user?.brand?.contact?.mobile2}
               />
             </div>
           </section>

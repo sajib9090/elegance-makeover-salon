@@ -3,10 +3,14 @@ import DashboardBox from "../../components/DashboardBox/DashboardBox";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { useGetAllSoldInvoicesByDateQuery } from "../../redux/features/soldInvoice/soldInvoiceApi";
 import CurrencyFormatter from "../../components/CurrencyFormatter/CurrencyFormatter";
+import { TbCalendarMonth } from "react-icons/tb";
 
 const Reports = () => {
   const date = new Date();
   const formattedDate = date.toISOString().split("T")[0];
+  const formattedMonth = `${date.getFullYear()}-${String(
+    date.getMonth() + 1
+  ).padStart(2, "0")}`;
 
   const { data: dateWiseData, isLoading: dateWiseLoading } =
     useGetAllSoldInvoicesByDateQuery(
@@ -38,6 +42,15 @@ const Reports = () => {
             : <CurrencyFormatter value={totalBillSumByDate} /> || "00"
         }
         title={"Today's Sales"}
+      />
+      <DashboardBox
+        borderColor={"border-green-300"}
+        backGroundColor={"bg-green-200"}
+        logo={<TbCalendarMonth />}
+        logoColor={"text-green-600"}
+        link={`/reports/query-broad?month=${formattedMonth}`}
+        quantity={formattedMonth}
+        title={"Monthly Sales"}
       />
       <DashboardBox
         borderColor={"border-purple-300"}

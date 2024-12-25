@@ -4,7 +4,7 @@ import useGreetings from "../../components/Greetings/Greetings";
 import { TbEyeFilled } from "react-icons/tb";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import Lottie from "lottie-react";
-import animation from "../../assets/animation/Animation - 1731918504107.json";
+import animation from "../../assets/animation/ani.json";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
 import PrimaryLoading from "../../components/Loading/PrimaryLoading";
@@ -125,7 +125,7 @@ const Login = () => {
             </div>
             <div className="mb-4 flex items-center justify-end">
               <Link
-                href="#"
+                to="forgot-password"
                 className="text-sm text-yellow-500 hover:underline"
               >
                 Forgot password?
@@ -136,7 +136,6 @@ const Login = () => {
                 formData?.email?.length == 0 ||
                 formData?.password?.length == 0 ||
                 isLoading
-                // fetchCurrentUserInfoLoading
               }
               type="submit"
               className="w-full flex justify-center items-center bg-[#001529] text-white p-3 rounded-lg hover:bg-[#E6F4FF] transition duration-500 hover:text-[#5977FF]"

@@ -44,6 +44,29 @@ const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    editBrandInfo: builder.mutation({
+      query: (data) => ({
+        url: `/users/edit-brand-info/${data?.userId}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["User"],
+    }),
+    editUserInfo: builder.mutation({
+      query: (data) => ({
+        url: `/users/edit-user-info`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["User"],
+    }),
+    forgotPassword: builder.mutation({
+      query: (data) => ({
+        url: `/users/forgot-password/${data?.mobile}`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -54,4 +77,7 @@ export const {
   useChangePasswordByAuthorityMutation,
   useDeleteUserByAuthorityMutation,
   useAddNewUserMutation,
+  useEditBrandInfoMutation,
+  useEditUserInfoMutation,
+  useForgotPasswordMutation,
 } = authApi;

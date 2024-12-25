@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import FullPageLoader from "../components/FullPageLoader/FullPageLoader";
 import Error from "../pages/Error/Error";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
 const Sell = lazy(() => import("../pages/Sell/Sell"));
 const SingleInvoice = lazy(() => import("../pages/Sell/SingleInvoice"));
@@ -38,6 +39,9 @@ const UserDetailsWithBrand = lazy(() =>
 );
 const DetailsReport = lazy(() =>
   import("../pages/Reports/DetailsReport/DetailsReport")
+);
+const MonthWiseReport = lazy(() =>
+  import("../pages/Reports/MonthWiseReport/MonthWiseReport")
 );
 
 export const router = createBrowserRouter([
@@ -164,6 +168,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/reports/query-broad",
+        element: (
+          <Suspense fallback={<FullPageLoader />}>
+            <MonthWiseReport />
+          </Suspense>
+        ),
+      },
+      {
         path: "/expense",
         element: (
           <Suspense fallback={<FullPageLoader />}>
@@ -192,6 +204,11 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+    errorElement: <h1>Error</h1>,
+  },
+  {
+    path: "/login/forgot-password",
+    element: <ForgotPassword />,
     errorElement: <h1>Error</h1>,
   },
 ]);

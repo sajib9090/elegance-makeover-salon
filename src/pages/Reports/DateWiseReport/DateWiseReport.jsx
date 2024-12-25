@@ -20,9 +20,9 @@ const DateWiseReport = () => {
 
   // Calculate the total sell
   const totalSell =
-    data?.data?.reduce((sum, invoice) => sum + invoice.total_bill, 0) || 0;
+    data?.data?.reduce((sum, invoice) => sum + invoice?.total_bill, 0) || 0;
   const totalDiscount =
-    data?.data?.reduce((sum, invoice) => sum + invoice.total_discount, 0) || 0;
+    data?.data?.reduce((sum, invoice) => sum + invoice?.total_discount, 0) || 0;
 
   // Update the query parameter whenever the date changes
   const handleDateChange = (event) => {
@@ -83,8 +83,8 @@ const DateWiseReport = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.data.map((invoice) => (
-                  <tr key={invoice._id} className="hover:bg-gray-50">
+                {data?.data?.map((invoice) => (
+                  <tr key={invoice?._id} className="hover:bg-gray-50">
                     <td className="px-2 py-1 border border-gray-200 text-xs text-gray-800">
                       {invoice?.invoice_id}
                     </td>
