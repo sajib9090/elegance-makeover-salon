@@ -23,7 +23,7 @@ const DashboardBox = ({
       <div
         className={`border-t-[2px] ${borderColor} h-[30px] w-full ${backGroundColor} text-center`}
       >
-        <Link to={link}>View Details </Link>
+        <p>View Details </p>
       </div>
     </Link>
   );

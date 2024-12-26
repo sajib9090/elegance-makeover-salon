@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { logout, setUser } from "../auth/authSlice";
 
-const baseUrl = "http://localhost:8000/api/v1";
-// const baseUrl = "https://elegance-makeover-salon-backend.vercel.app/api/v1";
+// const baseUrl = "http://localhost:8000/api/v1";
+const baseUrl = "https://elegance-makeover-salon-backend.vercel.app/api/v1";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,

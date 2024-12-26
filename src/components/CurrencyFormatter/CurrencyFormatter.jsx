@@ -13,7 +13,7 @@ function CurrencyFormatter({ value }) {
     setFormattedPrice(formatter.format(value).replace("BDT", "৳"));
   }, [value]);
 
-  return <div>{formattedPrice}</div>;
+  return <span>{formattedPrice}</span>;
 }
 
 export default CurrencyFormatter;

@@ -44,171 +44,183 @@ const MonthWiseReport = lazy(() =>
   import("../pages/Reports/MonthWiseReport/MonthWiseReport")
 );
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <AuthenticatedRoute>
-        <Main />
-      </AuthenticatedRoute>
-    ),
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Home />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/dashboard",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Dashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/dashboard/services",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Services />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/dashboard/categories",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Categories />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/dashboard/employees",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Employees />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/dashboard/employees/:id",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <EmployeeDetails />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/dashboard/users",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Users />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/dashboard/users/:id",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <UserDetails />
-          </Suspense>
-        ),
-      },
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: (
+        <AuthenticatedRoute>
+          <Main />
+        </AuthenticatedRoute>
+      ),
+      errorElement: <Error />,
+      children: [
+        {
+          path: "/",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Home />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Dashboard />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/services",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Services />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/categories",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Categories />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/employees",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Employees />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/employees/:id",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <EmployeeDetails />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/users",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Users />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/users/:id",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <UserDetails />
+            </Suspense>
+          ),
+        },
 
-      {
-        path: "/sell",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Sell />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/sell/:id",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <IndividualCustomerSell />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/sell/:id/:id",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <SingleInvoice />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/reports",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Reports />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/reports/details-report",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <DetailsReport />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/reports/query",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <DateWiseReport />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/reports/query-broad",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <MonthWiseReport />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/expense",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <Expense />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/expense/daily-expenses",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <DailyExpenses />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/user-details-with-brand/:id",
-        element: (
-          <Suspense fallback={<FullPageLoader />}>
-            <UserDetailsWithBrand />
-          </Suspense>
-        ),
-      },
-    ],
-  },
+        {
+          path: "/sell",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Sell />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/sell/:id",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <IndividualCustomerSell />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/sell/:id/:id",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <SingleInvoice />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/reports",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Reports />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/reports/details-report",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <DetailsReport />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/reports/query",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <DateWiseReport />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/reports/query-broad",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <MonthWiseReport />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/expense",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Expense />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/expense/daily-expenses",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <DailyExpenses />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/user-details-with-brand/:id",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <UserDetailsWithBrand />
+            </Suspense>
+          ),
+        },
+      ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
+      errorElement: <h1>Error</h1>,
+    },
+    {
+      path: "/login/forgot-password",
+      element: <ForgotPassword />,
+      errorElement: <h1>Error</h1>,
+    },
+  ],
   {
-    path: "/login",
-    element: <Login />,
-    errorElement: <h1>Error</h1>,
-  },
-  {
-    path: "/login/forgot-password",
-    element: <ForgotPassword />,
-    errorElement: <h1>Error</h1>,
-  },
-]);
+    future: {
+      v7_startTransition: true,
+      v7_relativeSplatPath: true,
+      v7_fetcherPersist: true,
+      v7_normalizeFormMethod: true,
+      v7_partialHydration: true,
+      v7_skipActionErrorRevalidation: true,
+    },
+  }
+);
