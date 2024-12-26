@@ -1,7 +1,9 @@
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react"; // Import useState
+import { useState } from "react";
 import { useGetEmployeeByIdQuery } from "../../../../redux/features/employee/employeeApi";
 import FullPageLoader from "../../../../components/FullPageLoader/FullPageLoader";
+
+import RemoveEmployeeAdvance from "../../../../components/Employees/RemoveEmployeeAdvance/RemoveEmployeeAdvance";
 
 const EmployeeDetails = () => {
   const { id } = useParams();
@@ -34,7 +36,7 @@ const EmployeeDetails = () => {
   const salariesToShow = showAll ? advanceSalaries : currentMonthSalaries;
 
   // Calculate total for displayed salaries
-  const totalAdvanceSalary = salariesToShow.reduce(
+  const totalAdvanceSalary = salariesToShow?.reduce(
     (sum, advance) => sum + (advance?.advance_salary || 0),
     0
   );
@@ -130,10 +132,11 @@ const EmployeeDetails = () => {
                     <th className="py-4 px-6 text-left">Amount (BDT)</th>
                     <th className="py-4 px-6 text-left">Created By</th>
                     <th className="py-4 px-6 text-left">Date</th>
+                    <th className="py-4 w-[5%]"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {salariesToShow.map((advance, index) => (
+                  {salariesToShow?.map((advance, index) => (
                     <tr
                       key={advance?._id}
                       className={`${
@@ -149,6 +152,9 @@ const EmployeeDetails = () => {
                       </td>
                       <td className="py-4 px-6">
                         {new Date(advance?.createdAt).toLocaleString()}
+                      </td>
+                      <td className="py-4 px-6">
+                        <RemoveEmployeeAdvance advance={advance} />
                       </td>
                     </tr>
                   ))}

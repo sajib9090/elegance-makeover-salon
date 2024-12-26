@@ -29,8 +29,18 @@ const expenseApi = baseApi.injectEndpoints({
       },
       providesTags: ["Expense"],
     }),
+    removeExpense: builder.mutation({
+      query: (data) => ({
+        url: `/expenses/delete-expense/${data?.expenseId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Expense"],
+    }),
   }),
 });
 
-export const { useAddNewExpenseMutation, useGetAllExpensesByDateQuery } =
-  expenseApi;
+export const {
+  useAddNewExpenseMutation,
+  useGetAllExpensesByDateQuery,
+  useRemoveExpenseMutation,
+} = expenseApi;

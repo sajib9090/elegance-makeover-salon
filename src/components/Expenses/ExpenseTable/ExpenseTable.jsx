@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
-import { FaTrash } from "react-icons/fa";
+import RemoveExpense from "../RemoveExpense/RemoveExpense";
 
 const ExpenseTable = ({ expenses }) => {
   const [groupedExpenses, setGroupedExpenses] = useState([]);
@@ -20,6 +20,8 @@ const ExpenseTable = ({ expenses }) => {
         acc[date] = { date, items: [], total: 0 };
       }
       acc[date]?.items?.push({
+        expense_id: expense?.expense_id,
+        employee_id: expense?.employee_id,
         title: expense?.title,
         amount: expense?.total_bill,
       });
@@ -75,8 +77,10 @@ const ExpenseTable = ({ expenses }) => {
                     <td className="border border-gray-300 px-4 py-2 text-right text-gray-700">
                       {item?.amount?.toLocaleString()} Tk.
                     </td>
-                    <td className="border border-gray-300 py-2 text-gray-700">
-                      <FaTrash className="mx-auto text-violet-900 cursor-pointer" />
+                    <td className="border border-gray-300 py-2 text-gray-700 flex items-center justify-center">
+                      {!item?.employee_id && (
+                        <RemoveExpense id={item?.expense_id} />
+                      )}
                     </td>
                   </tr>
                 ))}

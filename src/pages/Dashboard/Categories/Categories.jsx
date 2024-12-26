@@ -5,6 +5,7 @@ import {
   useGetAllCategoriesQuery,
 } from "../../../redux/features/category/categoryApi";
 import PrimaryLoading from "../../../components/Loading/PrimaryLoading";
+import { toast } from "sonner";
 
 const Categories = () => {
   const { data: categories, isLoading: categoryLoading } =
@@ -19,9 +20,11 @@ const Categories = () => {
     };
     try {
       const response = await deleteCategory(data).unwrap();
-      console.log(response);
+      if (response?.success) {
+        toast.success("Category deleted successfully");
+      }
     } catch (error) {
-      console.log(error);
+      toast.error(error?.message || error?.data?.message);
     }
   };
 

@@ -53,6 +53,14 @@ const employeeApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Employee"],
     }),
+    removeEmployeeAdvance: builder.mutation({
+      query: (data) => ({
+        url: `/employees/delete-advance-salary/${data?.employeeId}`,
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: ["Employee"],
+    }),
   }),
 });
 
@@ -62,4 +70,5 @@ export const {
   useGetEmployeeByIdQuery,
   useDeleteEmployeeMutation,
   useAddEmployeeAdvanceSalaryMutation,
+  useRemoveEmployeeAdvanceMutation,
 } = employeeApi;

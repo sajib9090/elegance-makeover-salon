@@ -37,7 +37,7 @@ const Services = () => {
             Dashboard {">"}{" "}
           </Link>
           <Link to={"/dashboard/services"}>
-            Services ({services?.data?.length})
+            Services ({services?.data_found})
           </Link>
         </div>
         <p className="text-[14px] capitalize">list of Services</p>

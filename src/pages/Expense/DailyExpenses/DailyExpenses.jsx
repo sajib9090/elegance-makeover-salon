@@ -17,13 +17,6 @@ const DailyExpenses = () => {
     { skip: !startDate || !endDate }
   );
 
-  const handleDateRangeChange = () => {
-    if (startDate && endDate) {
-      console.log("Date Range Selected:", { startDate, endDate });
-      // Use startDate and endDate to filter data or trigger other logic
-    }
-  };
-
   return (
     <div className="py-8 px-8 bg-gray-50 min-h-screen">
       {/* Breadcrumb */}
@@ -62,7 +55,6 @@ const DailyExpenses = () => {
                 ? "bg-gray-400 cursor-not-allowed text-gray-800"
                 : "bg-pink-600 text-white hover:bg-pink-700"
             }`}
-            onClick={handleDateRangeChange}
           >
             {isLoading ? "Loading..." : "Apply Filters"}
           </button>
