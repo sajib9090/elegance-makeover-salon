@@ -101,35 +101,7 @@ const UserDetailsWithBrand = () => {
             </div>
           </section>
 
-          {/* Subscription Info */}
-          <section>
-            <h2 className="text-3xl font-semibold text-gray-800 border-b-2 border-purple-500 pb-2">
-              Subscription Info
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-              <DetailItem
-                label="Subscription Status"
-                value={user?.subscription_info?.status ? "Active" : "Inactive"}
-                valueClass={
-                  user?.subscription_info?.status
-                    ? "text-green-600"
-                    : "text-red-600"
-                }
-              />
-              <DetailItem
-                label="Previous Payment Amount"
-                value={user?.subscription_info?.previous_payment_amount}
-              />
-              <DetailItem
-                label="Previous Payment Time"
-                value={user?.subscription_info?.previous_payment_time}
-              />
-              <DetailItem
-                label="Plan"
-                value={user?.selected_plan?.name || "No Plan Selected"}
-              />
-            </div>
-          </section>
+         
         </div>
 
         {/* Footer */}

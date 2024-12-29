@@ -49,7 +49,9 @@ const Users = () => {
                   <td className="capitalize text-[12px]">{d?.role}</td>
 
                   <td className="text-center">
-                    <DeleteUser id={d?.user_id} isLoading={userLoading} />
+                    {d?.username !== "sajib" && (
+                      <DeleteUser id={d?.user_id} isLoading={userLoading} />
+                    )}
                   </td>
                 </tr>
               ))}

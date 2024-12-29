@@ -163,11 +163,12 @@ const DetailsModal = ({ setIsOpen, isOpen, carts, customer }) => {
                     className={`${index % 2 === 0 ? "bg-pink-50" : "bg-white"}`}
                   >
                     <td className="border border-gray-200 p-2 text-center cursor-pointer">
-                      <IoTrashBin
-                        disabled={deleteLoading}
-                        onClick={() => handleDelete(item?.temp_order_log_id)}
-                        className="mx-auto"
-                      />
+                      <button disabled={deleteLoading}>
+                        <IoTrashBin
+                          onClick={() => handleDelete(item?.temp_order_log_id)}
+                          className="mx-auto"
+                        />
+                      </button>
                     </td>
                     <td className="border border-gray-200 p-2 capitalize">
                       {item?.service_name}

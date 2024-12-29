@@ -8,7 +8,7 @@ const tempCustomerApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Temp-Customer"],
+      invalidatesTags: ["Temp-Customer", "Customer"],
     }),
     getAllTempServices: builder.query({
       query: ({ searchValue }) => {

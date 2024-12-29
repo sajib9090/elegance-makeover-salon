@@ -4,6 +4,7 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 import { useGetAllSoldInvoicesByDateQuery } from "../../redux/features/soldInvoice/soldInvoiceApi";
 import CurrencyFormatter from "../../components/CurrencyFormatter/CurrencyFormatter";
 import { TbCalendarMonth } from "react-icons/tb";
+import { IoAccessibility } from "react-icons/io5";
 
 const Reports = () => {
   const date = new Date();
@@ -60,6 +61,15 @@ const Reports = () => {
         link={"details-report"}
         quantity={"Details"}
         title={"Details Sales & Expenses"}
+      />
+      <DashboardBox
+        borderColor={"border-orange-300"}
+        backGroundColor={"bg-orange-200"}
+        logo={<IoAccessibility />}
+        logoColor={"text-orange-600"}
+        link={"employee-sales-report"}
+        quantity={"Employee"}
+        title={"Employee Sales Reports"}
       />
     </div>
   );

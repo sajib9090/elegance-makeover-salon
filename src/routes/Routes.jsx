@@ -8,6 +8,7 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 import FullPageLoader from "../components/FullPageLoader/FullPageLoader";
 import Error from "../pages/Error/Error";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import Customers from "../pages/Dashboard/Customers/Customers";
 const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
 const Sell = lazy(() => import("../pages/Sell/Sell"));
 const SingleInvoice = lazy(() => import("../pages/Sell/SingleInvoice"));
@@ -43,6 +44,16 @@ const DetailsReport = lazy(() =>
 const MonthWiseReport = lazy(() =>
   import("../pages/Reports/MonthWiseReport/MonthWiseReport")
 );
+const SingleCustomer = lazy(() =>
+  import("../pages/Dashboard/Customers/SingleCustomer/SingleCustomer")
+);
+const EmployeeSalesReport = lazy(() =>
+  import("../pages/Dashboard/Employees/EmployeeSalesReport/EmployeeSalesReport")
+);
+const Plans = lazy(() => import("../pages/Plans/Plans"));
+const SinglePlan = lazy(() => import("../pages/Plans/SinglePlan/SinglePlan"));
+const Payment = lazy(() => import("../pages/Dashboard/Payment/Payment"));
+
 
 export const router = createBrowserRouter(
   [
@@ -95,6 +106,7 @@ export const router = createBrowserRouter(
             </Suspense>
           ),
         },
+
         {
           path: "/dashboard/employees/:id",
           element: (
@@ -116,6 +128,22 @@ export const router = createBrowserRouter(
           element: (
             <Suspense fallback={<FullPageLoader />}>
               <UserDetails />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/customers",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Customers />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/customers/:id",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <SingleCustomer />
             </Suspense>
           ),
         },
@@ -177,6 +205,14 @@ export const router = createBrowserRouter(
           ),
         },
         {
+          path: "/reports/employee-sales-report",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <EmployeeSalesReport />
+            </Suspense>
+          ),
+        },
+        {
           path: "/expense",
           element: (
             <Suspense fallback={<FullPageLoader />}>
@@ -200,6 +236,31 @@ export const router = createBrowserRouter(
             </Suspense>
           ),
         },
+        {
+          path: "/dashboard/plans",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Plans />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/plans/:id",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <SinglePlan />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/dashboard/payments",
+          element: (
+            <Suspense fallback={<FullPageLoader />}>
+              <Payment />
+            </Suspense>
+          ),
+        },
+        
       ],
     },
     {
