@@ -67,6 +67,32 @@ const authApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    updateUserAvatar: builder.mutation({
+      query: ({ avatar }) => {
+        const formData = new FormData();
+        formData.append("avatar", avatar);
+
+        return {
+          url: `/users/update-avatar`,
+          method: "PATCH",
+          body: formData,
+        };
+      },
+      invalidatesTags: ["User"],
+    }),
+    updateBrandLogo: builder.mutation({
+      query: ({ brandLogo }) => {
+        const formData = new FormData();
+        formData.append("brandLogo", brandLogo);
+
+        return {
+          url: `/users/update-brand-logo`,
+          method: "PATCH",
+          body: formData,
+        };
+      },
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -80,4 +106,6 @@ export const {
   useEditBrandInfoMutation,
   useEditUserInfoMutation,
   useForgotPasswordMutation,
+  useUpdateUserAvatarMutation,
+  useUpdateBrandLogoMutation,
 } = authApi;
